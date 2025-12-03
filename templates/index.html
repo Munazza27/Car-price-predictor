@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="stylesheet" href="static/css/style.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>CAR PRICE PREDICTOR</title>
+</head>
+<body class="bg-dark">
+    <div class='container'>
+        <div class="row">
+            <div class="card mt-50" style="width: 100% ; height: 100vh ;">
+
+                <div class="card-header">
+                    <div class="col-10" style="text-align:center; width: 100%">
+                        <h1>Welcommee To Car Price Predictor</h1>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <form method="post" action="/predict" accept-charset="UTF-8">
+                        
+                        <!-- Company -->
+<div class="form-group mb-3 text-center">
+    <label for="companies" class="form-label"><b>Select company:</b></label>
+    <select class="form-control selectpicker" id="companies" name="companies" required>
+        {% for company in companies %}
+        <option value="{{ company }}">{{ company }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<!-- Car Model -->
+<div class="form-group mb-3 text-center">
+    <label for="car_model" class="form-label"><b>Select name:</b></label>
+    <select class="form-control selectpicker" id="car_model" name="car_model" required>
+        {% for name in car_models %}
+        <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<!-- Year -->
+<div class="form-group mb-3 text-center">
+    <label for="year" class="form-label"><b>Select year of purchase:</b></label>
+    <select class="form-control selectpicker" id="year" name="year" required>
+        {% for y in years %}
+        <option value="{{ y }}">{{ y }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<!-- Fuel Type -->
+<div class="form-group mb-3 text-center">
+    <label for="fuel_type" class="form-label"><b>Select fuel type:</b></label>
+    <select class="form-control selectpicker" id="fuel_type" name="fuel_type" required>
+        {% for f in fuel %}
+        <option value="{{ f }}">{{ f }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<!-- Kilometers Driven -->
+<div class="form-group mb-3 text-center">
+    <label for="kilo_driven" class="form-label"><b>Enter kilometers driven:</b></label>
+    <input type="text" class="form-control" id="kilo_driven" name="kilo_driven" placeholder="Enter no of kilometers driven" required>
+</div>
+
+<!-- Submit -->
+<div class="form-group mb-3 text-center">
+    <button type="submit" class="btn btn-primary form-control">Predict Price</button>
+</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function load_car_models(companies, car_models) {
+        var company = document.getElementById('companies');
+        var car_model = document.getElementById('car_model'); // fixed ID
+
+        car_model.value = "";
+        car_model.innerHTML = "";
+
+        {% for company in companies %}
+        if (company.value == "{{ company }}") {
+            {% for model in car_models %}
+            {% if company in model %}
+            var newOption = document.createElement("option");
+            newOption.value = "{{ model }}";
+            newOption.innerHTML = "{{ model }}";
+            car_model.options.add(newOption);
+            {% endif %}
+            {% endfor %}
+        }
+        {% endfor %}
+    }
+
+    // 🔑 Wire the function to run when company changes
+    document.getElementById('companies').addEventListener('change', function() {
+        load_car_models();
+    });
+    </script>
+</body>
+</html>
+
