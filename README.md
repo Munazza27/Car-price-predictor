@@ -1,11 +1,4 @@
 # Car-price-predictor
-Car Price Predictor is a Flask web app that uses a machine learning model to estimate used car prices based on brand, model, year, fuel type, and kilometers driven
-
-
-
-
-
-Car Price Predictor
 
 A Flask-based machine learning web application that predicts the resale value of used cars based on attributes like brand, model, year, fuel type, and kilometers driven.  
 
@@ -24,12 +17,6 @@ This project demonstrates how to build, train, and deploy a machine learning mod
 - Development Tools: Jupyter Notebook, VS Code
 <img width="1907" height="1027" alt="Screenshot 2025-12-03 205238" src="https://github.com/user-attachments/assets/c0732c49-2a52-4825-bbd4-275f4685fc4b" />
 <img width="1903" height="710" alt="Screenshot 2025-12-03 205327" src="https://github.com/user-attachments/assets/3b40070d-62f0-425a-956c-ae9c031a32e1" />
------>Model Details
-- Trained on a dataset of car listings (`cleaned_car_data.csv`)  
-- Pipeline includes column transformer for categorical encoding  
-- Achieved an R² score of ~0.9 with optimal random state  
+###IT even provides the amount in negative values
 
 
----
-
-## 📁 Project Structure
